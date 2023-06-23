@@ -4,7 +4,7 @@ import { forwardAuthenticated } from "../middleware/checkAuth";
 
 const router = express.Router();
 
-router.get("/login", forwardAuthenticated, (req, res) => {
+router.get("/login", forwardAuthenticated, (req, res, next) => {
   res.render("login");
 })
 
