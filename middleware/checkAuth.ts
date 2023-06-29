@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
 /*
-FIX ME (types) 😭
+FIX ME (types) - done😭
 */
 export const ensureAuthenticated = (req: Request, res: Response, next: NextFunction) => {
   if (req.isAuthenticated()) {
@@ -11,7 +11,7 @@ export const ensureAuthenticated = (req: Request, res: Response, next: NextFunct
 }
 
 /*
-FIX ME (types) 😭
+FIX ME (types) - done😭
 */
 export const forwardAuthenticated = (req: Request, res: Response, next: NextFunction) => {
     if (!req.isAuthenticated()) {

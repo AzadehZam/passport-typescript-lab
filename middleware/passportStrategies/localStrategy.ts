@@ -18,17 +18,24 @@ const localStrategy = new LocalStrategy(
   }
 );
 
+declare global {
+    namespace Express {
+      interface User {
+        id: number;
+      }
+    }
+}
 /*
-FIX ME (types) 😭
+FIX ME (types) - done 😭
 */
-passport.serializeUser(function (user: any, done: any) {
+passport.serializeUser(function (user: Express.User, done: (err:any , id?: number | undefined) => void) {
   done(null, user.id);
 });
 
 /*
-FIX ME (types) 😭
+FIX ME (types) - done 😭
 */
-passport.deserializeUser(function (id: any, done: any) {
+passport.deserializeUser(function (id: any, done: (err: any , user?: false | Express.User | null | undefined ) => void) {
   let user = getUserById(id);
   if (user) {
     done(null, user);
