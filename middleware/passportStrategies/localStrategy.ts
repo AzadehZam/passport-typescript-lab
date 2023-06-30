@@ -9,12 +9,13 @@ const localStrategy = new LocalStrategy(
     passwordField: "password",
   },
   (email, password, done) => {
-    const user = getUserByEmailIdAndPassword(email, password);
-    return user
-      ? done(null, user)
+     const data = getUserByEmailIdAndPassword(email, password);
+    
+    return data.user 
+       ? done(null, data.user)
       : done(null, false, {
-          message: "Your login details are not valid. Please try again",
-        });
+          message: data.err,
+        }); 
   }
 );
 
@@ -26,16 +27,16 @@ declare global {
     }
 }
 /*
-FIX ME (types) - done 😭
+FIX ME (types) - done 
 */
 passport.serializeUser(function (user: Express.User, done: (err:any , id?: number | undefined) => void) {
   done(null, user.id);
 });
 
 /*
-FIX ME (types) - done 😭
+FIX ME (types) - done 
 */
-passport.deserializeUser(function (id: any, done: (err: any , user?: false | Express.User | null | undefined ) => void) {
+passport.deserializeUser(function (id: number, done: (err: any , user?: false | Express.User | null | undefined ) => void) {
   let user = getUserById(id);
   if (user) {
     done(null, user);
