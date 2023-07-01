@@ -2,8 +2,8 @@ import express from "express";
 import expressLayouts from "express-ejs-layouts";
 import session from "express-session";
 import path from "path";
-import passportMiddleware from './middleware/passportMiddleware';
-declare module 'express-session' {
+import passportMiddleware from "./middleware/passportMiddleware";
+declare module "express-session" {
   interface SessionData {
     messages: string[]; // Define the 'messages' property
   }
